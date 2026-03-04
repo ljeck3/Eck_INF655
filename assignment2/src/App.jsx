@@ -8,7 +8,6 @@ function App() {
   const name1 = "Marquis Nordyke"
   const name2 = "Chris P. Bacon"
 
-  {/*This array is used for both assignement 1 and 2*/}
   const tasks = [
     "Take out the trash",
     "Do the dishes",
