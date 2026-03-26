@@ -1,13 +1,13 @@
 import React from 'react';
 
-const number = (Math.floor(Math.random() * 10) +1);
-
-
-
 class UserInfo extends React.Component {
   constructor() {
     super();
-    this.state = { name: 'Joel', job: 'Contractor' };
+    this.state = { name: 'Joel', job: 'Contractor', luckyNumber: this.generateNumber() };
+  }
+
+  generateNumber() {
+    return Math.floor(Math.random() * 10) + 1;
   }
   
   render() {
@@ -15,8 +15,10 @@ class UserInfo extends React.Component {
     <div>
         <p>Name: {this.state.name}</p>
         <p>Profession: {this.state.job}</p>
-        <p>Your Lucky Number is {number}!</p>
-        <button onClick={this.props.handleClick}>Show Alert</button> {/*Assignment 2 - Task 4 */}
+        <p>Your Lucky Number is: {this.state.luckyNumber}</p>
+        <button onClick={() => this.setState({ luckyNumber: this.generateNumber() })}>
+          Generate New Lucky Number
+        </button>
     </div>
     );
   }
