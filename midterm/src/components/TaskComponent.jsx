@@ -24,7 +24,7 @@ function TaskComponent() {
       <ul>
         {filteredTasks.map((task) => <li>{ task.task }</li>)}
       </ul>
-      <button onClick={() => alert('idk')}>
+      <button onClick={() => alert(':(')}>
       Sort by Name</button>
     </div>
   )

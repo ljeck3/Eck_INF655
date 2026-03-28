@@ -24,7 +24,7 @@ function TaskForm() {
     }
   }
 
-  //move this to be a prop or something later
+  //This should've been passed as a prop :(
   function deleteTask(task) {
     if(confirm('Are you sure you want to delete?')) {
       setTasks(prev => prev.filter(t => t.task !== task));
