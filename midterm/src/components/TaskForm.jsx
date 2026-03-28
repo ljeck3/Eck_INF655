@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function TaskComponent() {
+function TaskForm() {
   const [newTask, setNewTask] = useState(""); // keeps track of new task name
   const [newDesc, setNewDesc] = useState(""); // keeps track of new task description
   const [search, setSearch] = useState(""); // for search
@@ -22,6 +22,11 @@ function TaskComponent() {
     } else {
       alert('You must add a name and a description.')
     }
+  }
+
+  //move this to be a prop or something later
+  function deleteTask(task) {
+    setTasks(prev => prev.filter(t => t.task !== task));
   }
 
   return (
@@ -49,10 +54,13 @@ function TaskComponent() {
         Add Task
         </button>
       <ul>
-        {filteredTasks.map((task) => <li>{ task.task }</li>)}
+        {filteredTasks.map((task) => <li>{ task.task }{': '}{task.description}
+          <button onClick={() => deleteTask(task.task, task.description)}>
+            Delete
+        </button></li>)}
       </ul>
     </div>
   )
 }
 
-export default TaskComponent; 
+export default TaskForm; 
