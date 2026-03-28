@@ -4,12 +4,17 @@ function TaskForm() {
     const [name, setName] = useState("");
 
     function submitName(){
-        console.log(`You entered the name: ${name}`)
+        alert(`You entered the name: ${name}`)
     }
   return (
     <div>
         <input
             placeholder="Enter Task Name"
+            value={name}
+            onChange={e => setName(e.target.value)}
+        />
+        <input
+            placeholder="Enter Task Description"
             value={name}
             onChange={e => setName(e.target.value)}
         />
