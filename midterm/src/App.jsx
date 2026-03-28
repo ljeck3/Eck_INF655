@@ -21,6 +21,7 @@ function handleAlert() {
       <hr></hr>
       <TaskComponent />
       <hr></hr>
+      <TaskForm />
     </div>
   );
 }
