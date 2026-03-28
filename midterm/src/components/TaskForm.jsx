@@ -31,6 +31,10 @@ function TaskForm() {
     }
   }
 
+  function sortTasks() {
+      setTasks(prev => [...prev].sort((a, b) => a.task.localeCompare(b.task)));
+    }
+
   return (
     <div>
       <input
@@ -60,6 +64,9 @@ function TaskForm() {
           <button onClick={() => deleteTask(task.task, task.description)}>
             Delete
         </button></li>)}
+        <button onClick={() => sortTasks()}>
+          Sort by Name
+        </button>
       </ul>
     </div>
   )
