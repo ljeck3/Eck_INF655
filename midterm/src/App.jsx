@@ -19,8 +19,6 @@ function handleAlert() {
       <hr></hr>
       <UserInfo handleClick={handleAlert} />
       <hr></hr>
-      <TaskComponent />
-      <hr></hr>
       <TaskForm />
     </div>
   );
