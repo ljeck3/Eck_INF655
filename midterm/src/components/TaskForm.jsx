@@ -13,8 +13,16 @@ function TaskComponent() {
     { task: "Wash the floor", description: "Every other weekend" },
   ]);
 
-  let searchWord = name.toLowerCase(); 
+  let searchWord = search.toLowerCase(); 
   let filteredTasks = tasks.filter(task => task.task.toLowerCase().includes(searchWord));
+
+  function handleSubmit() {
+    if (newTask !== "") {
+    setTasks(prev => [...prev, { task: newTask, description: newDesc }]);
+    } else {
+      alert('You must add a name and a description.')
+    }
+  }
 
   return (
     <div>
@@ -34,8 +42,12 @@ function TaskComponent() {
             value={newDesc}
             onChange={e => setNewDesc(e.target.value)}
         />
-        <button onClick={() => alert(`${search}${newTask}${newDesc}`)}>
-      Add Task</button>
+        {/* <button onClick={() => alert(`${search}${newTask}${newDesc}`)}>
+        Test for Data
+        </button> */}
+         <button onClick={() => handleSubmit()}>
+        Add Task
+        </button>
       <ul>
         {filteredTasks.map((task) => <li>{ task.task }</li>)}
       </ul>
