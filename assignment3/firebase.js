@@ -15,6 +15,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+//Get Helper
 export async function getTasks(uid) {
     try {
         const q = query(collection(db, "tasks"), where("uid", "==", uid));
@@ -26,7 +27,7 @@ export async function getTasks(uid) {
     }
 }
 
-//Add Task
+//Add Helper
 export async function addTask(task, uid) {
     try {
         const docRef = await addDoc (collection(db, "tasks"), { ...task, uid});
@@ -36,6 +37,17 @@ export async function addTask(task, uid) {
         console.error("error adding task:", error);
     }
 }
+
+//Delete Helper
+export async function deleteTask(id) {
+    try {
+        await deleteDoc(doc(db, "tasks", id));
+        console.log("Deleted task from Firebase");
+    } catch (error) {
+        console.error("error deleting task: ", error);
+    }
+}
+
 
 export { db };
 export const auth = getAuth(app);

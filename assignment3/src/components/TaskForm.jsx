@@ -1,6 +1,6 @@
 import { useState, useEffect} from "react";
 import { db } from '../../firebase.js'
-import { addTask, getTasks } from '../../firebase.js'
+import { addTask, getTasks, deleteTask} from '../../firebase.js'
 
 function TaskForm({ user }) {
   const [newTask, setNewTask] = useState(""); // keeps track of new task name
@@ -10,15 +10,23 @@ function TaskForm({ user }) {
   const [tasks, setTasks] = useState([]);
 
   //load tasks
-  async function loadTasks() {
+  async function interfaceLoad() {
     const data = await getTasks(user.uid);
     setTasks(data);
+  }
+
+  //delete tasks
+  async function interfaceDelete(id) {
+    if(confirm('Are you sure you want to delete?')) {
+      deleteTask(id)
+      interfaceLoad();
+    }
   }
 
   //Load tasks on load
   useEffect(() => {
   if (!user) return;
-  loadTasks();
+  interfaceLoad();
 }, [user]);
 
 
@@ -28,16 +36,9 @@ function TaskForm({ user }) {
   async function handleSubmit() {
     if (newTask !== "") {
       await addTask({ task: newTask, description: newDesc }, user.uid);
-      loadTasks();//calls load again
+      interfaceLoad();//calls load again
     } else {
       alert('You must add a name and description');
-    }
-  }
-
-  //This should've been passed as a prop :(
-  function deleteTask(task) {
-    if(confirm('Are you sure you want to delete?')) {
-      setTasks(prev => prev.filter(t => t.task !== task));
     }
   }
 
@@ -68,7 +69,7 @@ function TaskForm({ user }) {
         </button>
       <ul>
         {filteredTasks.map((task) => <li>{ task.task }{': '}{task.description}
-          <button onClick={() => deleteTask(task.task, task.description)}>
+          <button onClick={() => interfaceDelete(task.id)}>
             Delete
         </button></li>)}
         <button onClick={() => sortTasks()}>
