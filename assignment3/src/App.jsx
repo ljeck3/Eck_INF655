@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Greeting from './components/Greeting'
 import UserInfo from './components/UserInfo'
 import Counter from './components/Counter'
@@ -8,6 +8,9 @@ import TaskComponent from './components/TaskComponent';
 function App() {
 const name1 = "Marquis Nordyke"
 const name2 = "Chris P. Bacon"
+
+const [user, setUser] = useState(null)
+
 
 function handleAlert() {
     alert("This is an alert");
