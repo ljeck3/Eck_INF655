@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect} from "react";
 import { db } from '../../firebase.js'
 import { addTask, getTasks } from '../../firebase.js'
 
@@ -9,6 +9,17 @@ function TaskForm({ user }) {
 
   const [tasks, setTasks] = useState([]);
 
+  //load tasks
+  async function loadTasks() {
+    const data = await getTasks(user.uid);
+    setTasks(data);
+  }
+
+  //Load tasks on load
+  useEffect(() => {
+  if (!user) return;
+  loadTasks();
+}, [user]);
 
 
   let searchWord = search.toLowerCase(); 
@@ -16,15 +27,12 @@ function TaskForm({ user }) {
 
   async function handleSubmit() {
     if (newTask !== "") {
-      await addTask({ task: newTask, description: newDesc }, user.uid)
+      await addTask({ task: newTask, description: newDesc }, user.uid);
+      loadTasks();//calls load again
+    } else {
+      alert('You must add a name and description');
     }
   }
-    /* if (newTask !== "") {
-    setTasks(prev => [...prev, { task: newTask, description: newDesc }]);
-    } else {
-      alert('You must add a name and a description.')
-    }
-  } */
 
   //This should've been passed as a prop :(
   function deleteTask(task) {
@@ -55,9 +63,6 @@ function TaskForm({ user }) {
             value={newDesc}
             onChange={e => setNewDesc(e.target.value)}
         />
-        {/* <button onClick={() => alert(`${search}${newTask}${newDesc}`)}>
-        Test for Data
-        </button> */}
          <button onClick={() => handleSubmit()}>
         Add Task
         </button>
