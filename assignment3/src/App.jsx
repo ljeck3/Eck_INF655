@@ -3,7 +3,7 @@ import Greeting from './components/Greeting'
 import UserInfo from './components/UserInfo'
 import Counter from './components/Counter'
 import TaskForm from './components/TaskForm'
-import TaskComponent from './components/TaskComponent';
+import Register from './components/Register';
 
 function App() {
 const name1 = "Marquis Nordyke"
@@ -18,6 +18,7 @@ function handleAlert() {
 
   return (
     <div className="App">
+      <Register />
       <Greeting username={name1} />
       <hr></hr>
       <UserInfo handleClick={handleAlert} />
