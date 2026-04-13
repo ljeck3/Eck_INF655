@@ -1,10 +1,8 @@
 import { useState } from "react";
 import { db } from '../../firebase.js'
-//import { addTask, getTasks, deleteTask } from '../../firebase.js'
+import { addTask, getTasks } from '../../firebase.js'
 
-
-
-function TaskForm() {
+function TaskForm({ user }) {
   const [newTask, setNewTask] = useState(""); // keeps track of new task name
   const [newDesc, setNewDesc] = useState(""); // keeps track of new task description
   const [search, setSearch] = useState(""); // for search

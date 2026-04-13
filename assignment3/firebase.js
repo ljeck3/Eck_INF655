@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc } from 'firebase/firestore';
+import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, query, where } from 'firebase/firestore';
 
  
 const firebaseConfig = {
@@ -15,24 +15,23 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-export async function getTasks() {
-    const tasks = [];
-    try {const querySnapshot = await getDocs(collection(db, "tasks"))
-    querySnapshot.forEach((doc)=>{
-        tasks.push({id: doc.id, ...doc.data()})
-    })
-    } catch(error) {
-        console.error("error retrieving task: ", error);
+export async function getTasks(uid) {
+    try {
+        const q = query(collection(db, "tasks"), where("uid", "==", uid));
+        const querySnapshot = await getDocs(q);
+        return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    } catch (error) {
+        console.error("error retrieving tasks: ", error);
+        return [];
     }
-    return tasks; 
 }
 
 //Add Task
-export async function addTask(task) {
+export async function addTask(task, uid) {
     try {
-        const docRef = await addDoc (collection(db, "tasks"), task);
+        const docRef = await addDoc (collection(db, "tasks"), { ...task, uid});
         console.log("Task added to Firebase")
-        return {id: docRef.id, ...task}
+        return {id: docRef.id, ...task, uid}
     }   catch (error) {
         console.error("error adding task:", error);
     }

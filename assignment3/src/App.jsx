@@ -10,8 +10,6 @@ import Logout from './components/Logout';
 import { onAuthStateChanged } from 'firebase/auth';
 
 function App() {
-const name1 = "Marquis Nordyke"
-const name2 = "Chris P. Bacon"
 
 const [user, setUser] = useState(null)
 useEffect(() => {
@@ -21,10 +19,6 @@ useEffect(() => {
     return unsubscribe
 }, [])
 
-function handleAlert() {
-    alert("This is an alert");
-  }
-
   return (
     <div className="App">
       <Logout />
@@ -32,7 +26,7 @@ function handleAlert() {
       <Login />
       <Greeting username={user ? user.email : "Guest"} />
       <hr></hr>
-      <TaskForm />
+      <TaskForm user={user}/>
     </div>
   );
 }
