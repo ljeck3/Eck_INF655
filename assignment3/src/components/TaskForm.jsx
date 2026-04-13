@@ -1,19 +1,17 @@
-//This component contains requirements for Tasks 3-5
-
 import { useState } from "react";
+import { db } from '../../firebase.js'
+//import { addTask, getTasks, deleteTask } from '../../firebase.js'
+
+
 
 function TaskForm() {
   const [newTask, setNewTask] = useState(""); // keeps track of new task name
   const [newDesc, setNewDesc] = useState(""); // keeps track of new task description
   const [search, setSearch] = useState(""); // for search
 
-  const [tasks, setTasks] = useState([
-    { task: "Take out the trash", description: "Every Tuesday evening" },
-    { task: "Do the dishes", description: "After every meal" },
-    { task: "Clean the bathroom", description: "Once a week" },
-    { task: "Fold laundry", description: "When the dryer is done" },
-    { task: "Wash the floor", description: "Every other weekend" },
-  ]);
+  const [tasks, setTasks] = useState([]);
+
+
 
   let searchWord = search.toLowerCase(); 
   let filteredTasks = tasks.filter(task => task.task.toLowerCase().includes(searchWord));
