@@ -14,13 +14,17 @@ function TaskForm({ user }) {
   let searchWord = search.toLowerCase(); 
   let filteredTasks = tasks.filter(task => task.task.toLowerCase().includes(searchWord));
 
-  function handleSubmit() {
+  async function handleSubmit() {
     if (newTask !== "") {
+      await addTask({ task: newTask, description: newDesc }, user.uid)
+    }
+  }
+    /* if (newTask !== "") {
     setTasks(prev => [...prev, { task: newTask, description: newDesc }]);
     } else {
       alert('You must add a name and a description.')
     }
-  }
+  } */
 
   //This should've been passed as a prop :(
   function deleteTask(task) {
