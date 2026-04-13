@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { auth } from '../firebase.js'
+import Home from './pages/Home'
 
-import Greeting from './components/Greeting'
-import TaskForm from './components/TaskForm'
-import Register from './components/Register';
-import Login from './components/Login';
-import Logout from './components/Logout';
+
+//import Greeting from './components/Greeting'
+//import TaskForm from './components/TaskForm'
 import { onAuthStateChanged } from 'firebase/auth';
 
 function App() {
@@ -20,14 +20,11 @@ useEffect(() => {
 }, [])
 
   return (
-    <div className="App">
-      <Logout />
-      <Register />
-      <Login />
-      <Greeting username={user ? user.email : "Guest"} />
-      <hr></hr>
-      <TaskForm user={user}/>
-    </div>
+    <BrowserRouter>
+      <Routes>
+          <Route path="/" element={<Home user={user} />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
