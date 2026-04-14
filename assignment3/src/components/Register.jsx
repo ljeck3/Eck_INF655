@@ -19,7 +19,7 @@ import { useAuth } from '../context/AuthContext.jsx';
 
     return (
     <div>
-        <h1>Register</h1>
+        <h3>Register</h3>
         <form onSubmit={handleRegister}>
                 <label htmlFor="email">Email:</label>
                 <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" id="register-email" name="email" required/><br />

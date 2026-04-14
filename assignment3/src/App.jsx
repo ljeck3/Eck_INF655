@@ -24,14 +24,16 @@ if (loading) return <p>Loading...</p>; //ProtectedRoute was doing checks before 
 
   return (
     <BrowserRouter>
-      <Routes>
-          <Route path="/login" element={<LoginPage user={user} />} />
-          <Route path="/" element={
-            <ProtectedRoute user={user}>
-              <Dashboard user={user} />
-            </ProtectedRoute>
-          } />
-      </Routes>
+      <div className='container'>
+        <Routes>
+            <Route path="/login" element={<LoginPage user={user} />} />
+            <Route path="/" element={
+              <ProtectedRoute user={user}>
+                  <Dashboard user={user} />
+              </ProtectedRoute>
+            } />
+        </Routes>
+      </div>
     </BrowserRouter>
   );
 }

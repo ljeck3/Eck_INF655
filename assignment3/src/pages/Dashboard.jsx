@@ -1,10 +1,13 @@
+import Header from '../components/Header'
 import Greeting from '../components/Greeting'
 import Logout from '../components/Logout';
 import TaskForm from '../components/TaskForm';
 
 function Dashboard({ user }) {
     return (
-        <div>
+        <div className='center-align'>
+            <Header />
+            <hr></hr>
             <Logout />
             <Greeting username={user?.email} />
             <TaskForm user={user}/>
