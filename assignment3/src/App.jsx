@@ -2,27 +2,35 @@ import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { auth } from '../firebase.js'
-import Home from './pages/Home'
+import LoginPage from './pages/LoginPage.jsx'
+import Dashboard from './pages/Dashboard'
+import ProtectedRoute from './components/ProtectedRoute';
 
-
-//import Greeting from './components/Greeting'
-//import TaskForm from './components/TaskForm'
 import { onAuthStateChanged } from 'firebase/auth';
 
 function App() {
 
+const [loading, setLoading] = useState(true); 
 const [user, setUser] = useState(null)
 useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
         setUser(currentUser)
+        setLoading(false);
     })
     return unsubscribe
 }, [])
 
+if (loading) return <p>Loading...</p>; //ProtectedRoute was doing checks before Firebase could get user info. This makes it wait. 
+
   return (
     <BrowserRouter>
       <Routes>
-          <Route path="/" element={<Home user={user} />} />
+          <Route path="/login" element={<LoginPage user={user} />} />
+          <Route path="/" element={
+            <ProtectedRoute user={user}>
+              <Dashboard user={user} />
+            </ProtectedRoute>
+          } />
       </Routes>
     </BrowserRouter>
   );

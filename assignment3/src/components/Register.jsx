@@ -19,15 +19,16 @@ import { useAuth } from '../context/AuthContext.jsx';
 
     return (
     <div>
-       <form onSubmit={handleRegister}>
-            <label htmlFor="email">Email:</label>
-            <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" id="register-email" name="email" required/><br />
+        <h1>Register</h1>
+        <form onSubmit={handleRegister}>
+                <label htmlFor="email">Email:</label>
+                <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" id="register-email" name="email" required/><br />
 
-            <label htmlFor="password">Password:</label>
-            <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" id="register-password" name="password" required/><br />
+                <label htmlFor="password">Password:</label>
+                <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" id="register-password" name="password" required/><br />
 
-            <button type="submit">Register</button>
-       </form>
+                <button type="submit">Register</button>
+        </form>
     </div>
     );
 }

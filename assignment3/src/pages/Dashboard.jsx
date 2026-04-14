@@ -1,17 +1,14 @@
 import Greeting from '../components/Greeting'
-import Register from '../components/Register';
-import Login from '../components/Login';
 import Logout from '../components/Logout';
 
-function Home({ user }) {
+function Dashboard({ user }) {
     return (
         <div>
+            <p>This is the dashboard</p>
             <Logout />
             <Greeting username={user?.email} />
-            <Register />
-            <Login />
         </div>
     );
 }
 
-export default Home;
+export default Dashboard;
