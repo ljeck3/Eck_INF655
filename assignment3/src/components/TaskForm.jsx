@@ -42,8 +42,9 @@ function TaskForm({ user }) {
   let filteredTasks = tasks.filter(task => task.task.toLowerCase().includes(searchWord));
 
   async function handleSubmit() {
+    const date = new Date();
     if (newTask !== "") {
-      await addTask({ task: newTask, description: newDesc }, user.uid);
+      await addTask({ task: newTask, description: newDesc }, user.uid, date.toDateString());
       interfaceLoad();//calls load again
     } else {
       alert('You must add a name and description');
@@ -56,25 +57,7 @@ function TaskForm({ user }) {
 
   return (
     <div>
-      <input
-            placeholder="Search Tasks"
-            value={search}
-            onChange={e => setSearch(e.target.value)}
-        />
-        <br></br>
-        <input
-            placeholder="Enter Task Name"
-            value={newTask}
-            onChange={e => setNewTask(e.target.value)}
-        />
-        <input
-            placeholder="Enter Task Description"
-            value={newDesc}
-            onChange={e => setNewDesc(e.target.value)}
-        />
-         <button onClick={() => handleSubmit()}>
-        Add Task
-        </button>
+      <h4>View Tasks</h4>
       <ul>
         {filteredTasks.map((task) => <li>{ task.task }{': '}{task.description}
           <button onClick={() => interfaceUpdate(task.id)}>
@@ -88,6 +71,26 @@ function TaskForm({ user }) {
           Sort by Name
         </button> */}
       </ul>
+      <h4>Add A New Task</h4>
+      <input
+          placeholder="Enter Task Name"
+          value={newTask}
+          onChange={e => setNewTask(e.target.value)}
+      />
+      <input
+          placeholder="Enter Task Description"
+          value={newDesc}
+          onChange={e => setNewDesc(e.target.value)}
+      />
+      <button onClick={() => handleSubmit()}>
+        Add Task
+      </button>
+      <input
+          placeholder="Search Tasks"
+          value={search}
+          onChange={e => setSearch(e.target.value)}
+      />
+      <br></br>
     </div>
   )
 }

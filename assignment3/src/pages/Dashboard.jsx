@@ -10,6 +10,7 @@ function Dashboard({ user }) {
             <hr></hr>
             <Logout />
             <Greeting username={user?.email} />
+            <hr></hr>
             <TaskForm user={user}/>
         </div>
     );

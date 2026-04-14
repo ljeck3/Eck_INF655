@@ -28,11 +28,11 @@ export async function getTasks(uid) {
 }
 
 //Add Helper
-export async function addTask(task, uid) {
+export async function addTask(task, uid, createdAt) {
     try {
-        const docRef = await addDoc (collection(db, "tasks"), { ...task, uid});
+        const docRef = await addDoc (collection(db, "tasks"), { ...task, uid, createdAt});
         console.log("Task added to Firebase")
-        return {id: docRef.id, ...task, uid}
+        return {id: docRef.id, ...task, uid, createdAt}
     }   catch (error) {
         console.error("error adding task:", error);
     }
