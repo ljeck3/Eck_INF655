@@ -72,9 +72,9 @@ function TaskForm({ user }) {
           <button onClick={() => interfaceDelete(task.id)}>
             Delete
         </button></li>)}
-        <button onClick={() => sortTasks()}>
+       {/*  <button onClick={() => sortTasks()}>
           Sort by Name
-        </button>
+        </button> */}
       </ul>
     </div>
   )

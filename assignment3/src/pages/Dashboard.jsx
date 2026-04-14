@@ -1,12 +1,13 @@
 import Greeting from '../components/Greeting'
 import Logout from '../components/Logout';
+import TaskForm from '../components/TaskForm';
 
 function Dashboard({ user }) {
     return (
         <div>
-            <p>This is the dashboard</p>
             <Logout />
             <Greeting username={user?.email} />
+            <TaskForm user={user}/>
         </div>
     );
 }

@@ -7,6 +7,7 @@ import { useAuth } from '../context/AuthContext.jsx';
         try {
             await logout();
             alert("Logged out successfully");
+            navigate("/login");
         } catch (error) {
             console.error("Logout error:", error.message);
         }
