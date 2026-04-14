@@ -1,6 +1,5 @@
 import { useState, useEffect} from "react";
-import { db } from '../../firebase.js'
-import { addTask, getTasks, deleteTask} from '../../firebase.js'
+import { db, addTask, getTasks, deleteTask, updateTask} from '../../firebase.js'
 
 function TaskForm({ user }) {
   const [newTask, setNewTask] = useState(""); // keeps track of new task name
@@ -21,6 +20,15 @@ function TaskForm({ user }) {
       deleteTask(id)
       interfaceLoad();
     }
+  }
+
+    //delete tasks
+  async function interfaceUpdate(id) {
+    const revisedTask = window.prompt("Edit Task Name","");
+    const revisedDesc = window.prompt("Edit Task Description","");
+    updateTask( id, { task: revisedTask, description: revisedDesc });
+    interfaceLoad();
+    
   }
 
   //Load tasks on load
@@ -69,9 +77,13 @@ function TaskForm({ user }) {
         </button>
       <ul>
         {filteredTasks.map((task) => <li>{ task.task }{': '}{task.description}
+          <button onClick={() => interfaceUpdate(task.id)}>
+            Edit
+          </button>
           <button onClick={() => interfaceDelete(task.id)}>
             Delete
-        </button></li>)}
+          </button>
+          </li>)}
        {/*  <button onClick={() => sortTasks()}>
           Sort by Name
         </button> */}

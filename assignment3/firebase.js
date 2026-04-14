@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, query, where } from 'firebase/firestore';
+import { getFirestore, collection, addDoc, getDocs, deleteDoc, updateDoc, doc, query, where } from 'firebase/firestore';
 
  
 const firebaseConfig = {
@@ -45,6 +45,17 @@ export async function deleteTask(id) {
         console.log("Deleted task from Firebase");
     } catch (error) {
         console.error("error deleting task: ", error);
+    }
+}
+
+//Update Helper
+export async function updateTask(id, updateData){
+    try {
+        const taskRef = doc(db, "tasks", id) 
+        await updateDoc(taskRef, updateData)
+        console.log("Task updated!");
+    }catch (error) {
+        console.error("error updatating RSVP: ", error);
     }
 }
 
