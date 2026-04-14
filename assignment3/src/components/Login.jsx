@@ -4,7 +4,7 @@ import { useAuth } from '../context/AuthContext.jsx';
 
   function Login() {
     const { login } = useAuth()
-    const navigate = useNavigate();  // add this
+    const navigate = useNavigate();
  
 
     const [email, setEmail] = useState('')

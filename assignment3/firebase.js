@@ -16,9 +16,9 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 //Get Helper
-export async function getTasks(uid) {
+export async function getTasks(userId) {
     try {
-        const q = query(collection(db, "tasks"), where("uid", "==", uid));
+        const q = query(collection(db, "tasks"), where("userId", "==", userId));
         const querySnapshot = await getDocs(q);
         return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
     } catch (error) {
@@ -28,11 +28,11 @@ export async function getTasks(uid) {
 }
 
 //Add Helper
-export async function addTask(task, uid, createdAt) {
+export async function addTask(task, userId, createdAt) {
     try {
-        const docRef = await addDoc (collection(db, "tasks"), { ...task, uid, createdAt});
+        const docRef = await addDoc (collection(db, "tasks"), { ...task, userId, createdAt});
         console.log("Task added to Firebase")
-        return {id: docRef.id, ...task, uid, createdAt}
+        return {id: docRef.id, ...task, userId, createdAt}
     }   catch (error) {
         console.error("error adding task:", error);
     }
@@ -58,7 +58,6 @@ export async function updateTask(id, updateData){
         console.error("error updatating RSVP: ", error);
     }
 }
-
 
 export { db };
 export const auth = getAuth(app);

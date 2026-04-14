@@ -22,11 +22,11 @@ function TaskForm({ user }) {
     }
   }
 
-    //delete tasks
+  //update tasks
   async function interfaceUpdate(id) {
     const revisedTask = window.prompt("Edit Task Name","");
     const revisedDesc = window.prompt("Edit Task Description","");
-    updateTask( id, { task: revisedTask, description: revisedDesc });
+    updateTask( id, { taskName: revisedTask, taskDescription: revisedDesc });
     interfaceLoad();
     
   }
@@ -34,17 +34,16 @@ function TaskForm({ user }) {
   //Load tasks on load
   useEffect(() => {
   if (!user) return;
-  interfaceLoad();
-}, [user]);
-
+    interfaceLoad();
+  }, [user]);
 
   let searchWord = search.toLowerCase(); 
-  let filteredTasks = tasks.filter(task => task.task.toLowerCase().includes(searchWord));
+  let filteredTasks = tasks.filter(task => task.taskName.toLowerCase().includes(searchWord));
 
   async function handleSubmit() {
     const date = new Date();
     if (newTask !== "") {
-      await addTask({ task: newTask, description: newDesc }, user.uid, date.toDateString());
+      await addTask({ taskName: newTask, taskDescription: newDesc }, user.uid, date.toDateString());
       interfaceLoad();//calls load again
     } else {
       alert('You must add a name and description');
@@ -59,7 +58,7 @@ function TaskForm({ user }) {
     <div>
       <h4>View Tasks</h4>
       <ul>
-        {filteredTasks.map((task) => <li>{ task.task }{': '}{task.description}
+        {filteredTasks.map((task) => <li>{ task.taskName }{': '}{task.taskDescription}
           <button onClick={() => interfaceUpdate(task.id)}>
             Edit
           </button>
