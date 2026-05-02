@@ -3,7 +3,11 @@ import { db, addGame, getGames, deleteGame, updateGame} from '../../firebase.js'
 
 function GameForm({ user }) {
   const [newGame, setNewGame] = useState(""); // keeps track of new game name
+  const [newPub, setNewPub] = useState(""); // keeps track of new game publisher
+  const [newYear, setNewYear] = useState(""); // keeps track of new game year
   const [newDesc, setNewDesc] = useState(""); // keeps track of new game description
+  const [completeStatus, setCompleteStatus] = useState("");
+
   const [search, setSearch] = useState(""); // for search
 
   const [games, setGames] = useState([]);
@@ -25,8 +29,10 @@ function GameForm({ user }) {
   //update games
   async function interfaceUpdate(id) {
     const revisedGame = window.prompt("Edit Game Name","");
+    const revisedPub = window.prompt("Edit Game Publisher","");
+    const revisedYear = window.prompt("Edit Game Year","");
     const revisedDesc = window.prompt("Edit Game Description","");
-    updateGame( id, { gameName: revisedGame, gameDescription: revisedDesc });
+    updateGame( id, { gameName: revisedGame, gamePublisher: revisedPub, gameYear: revisedYear, gameDescription: revisedDesc});
     interfaceLoad();
     
   }
@@ -43,7 +49,7 @@ function GameForm({ user }) {
   async function handleSubmit() {
     const date = new Date();
     if (newGame !== "") {
-      await addGame({ gameName: newGame, gameDescription: newDesc }, user.uid, date.toDateString());
+      await addGame({ gameName: newGame, gamePublisher: newPub, gameYear: newYear, gameDescription: newDesc }, user.uid, date.toDateString());
       interfaceLoad();//calls load again
     } else {
       alert('You must add a name and description');
@@ -77,10 +83,24 @@ function GameForm({ user }) {
           onChange={e => setNewGame(e.target.value)}
       />
       <input
+          placeholder="Enter Publisher"
+          value={newPub}
+          onChange={e => setNewPub(e.target.value)}
+      />
+      <input
+          placeholder="Enter Publication Year"
+          value={newYear}
+          onChange={e => setNewYear(e.target.value)}
+      />
+      <input
           placeholder="Enter Game Description"
           value={newDesc}
           onChange={e => setNewDesc(e.target.value)}
       />
+      <h5>Add box art </h5>
+      <input 
+        type="file">
+      </input><br></br><br></br>
       <button onClick={() => handleSubmit()}>
         Add Game
       </button>
