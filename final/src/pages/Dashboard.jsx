@@ -1,7 +1,7 @@
 import Header from '../components/Header'
 import Greeting from '../components/Greeting'
 import Logout from '../components/Logout';
-import TaskForm from '../components/TaskForm';
+import GameForm from '../components/GameForm';
 
 function Dashboard({ user }) {
     return (
@@ -11,7 +11,7 @@ function Dashboard({ user }) {
             <Logout />
             <Greeting username={user?.email} />
             <hr></hr>
-            <TaskForm user={user}/>
+            <GameForm user={user}/>
         </div>
     );
 }

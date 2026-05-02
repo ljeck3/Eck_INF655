@@ -16,46 +16,46 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 //Get Helper
-export async function getTasks(userId) {
+export async function getGames(userId) {
     try {
-        const q = query(collection(db, "tasks"), where("userId", "==", userId));
+        const q = query(collection(db, "games"), where("userId", "==", userId));
         const querySnapshot = await getDocs(q);
         return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
     } catch (error) {
-        console.error("error retrieving tasks: ", error);
+        console.error("error retrieving games: ", error);
         return [];
     }
 }
 
 //Add Helper
-export async function addTask(task, userId, createdAt) {
+export async function addGame(game, userId, createdAt) {
     try {
-        const docRef = await addDoc (collection(db, "tasks"), { ...task, userId, createdAt});
-        console.log("Task added to Firebase")
-        return {id: docRef.id, ...task, userId, createdAt}
+        const docRef = await addDoc (collection(db, "games"), { ...game, userId, createdAt});
+        console.log("Game added to Firebase")
+        return {id: docRef.id, ...game, userId, createdAt}
     }   catch (error) {
-        console.error("error adding task:", error);
+        console.error("error adding game:", error);
     }
 }
 
 //Delete Helper
-export async function deleteTask(id) {
+export async function deleteGame(id) {
     try {
-        await deleteDoc(doc(db, "tasks", id));
-        console.log("Deleted task from Firebase");
+        await deleteDoc(doc(db, "games", id));
+        console.log("Deleted game from Firebase");
     } catch (error) {
-        console.error("error deleting task: ", error);
+        console.error("error deleting game: ", error);
     }
 }
 
 //Update Helper
-export async function updateTask(id, updateData){
+export async function updateGame(id, updateData){
     try {
-        const taskRef = doc(db, "tasks", id) 
-        await updateDoc(taskRef, updateData)
-        console.log("Task updated!");
+        const gameRef = doc(db, "games", id) 
+        await updateDoc(gameRef, updateData)
+        console.log("Game updated!");
     }catch (error) {
-        console.error("error updatating RSVP: ", error);
+        console.error("error updatating game: ", error);
     }
 }
 
