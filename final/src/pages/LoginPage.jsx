@@ -5,7 +5,7 @@ import Login from '../components/Login';
 function LoginPage({ user }) {
     return (
         <div className='center-align'>
-            <Header />
+            <Header username={user?.email}/>
             <hr></hr>
             <Login />
         </div>

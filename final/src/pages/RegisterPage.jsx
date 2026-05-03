@@ -5,7 +5,7 @@ import Register from '../components/Register';
 function RegisterPage({ user }) {
     return (
         <div className='center-align'>
-            <Header />
+            <Header username={user?.email}/>
             <hr></hr>
             <Register />
         </div>
