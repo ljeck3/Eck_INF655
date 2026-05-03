@@ -1,15 +1,15 @@
 import Header from '../components/Header'
-import Login from '../components/Login';
+import Register from '../components/Register';
 //import Logout from '../components/Logout';
 
-function LoginPage({ user }) {
+function RegisterPage({ user }) {
     return (
         <div className='center-align'>
             <Header />
             <hr></hr>
-            <Login />
+            <Register />
         </div>
     );
 }
 
-export default LoginPage;
+export default RegisterPage;

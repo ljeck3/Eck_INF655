@@ -3,7 +3,7 @@ import { getGames} from '../../firebase.js'
 
 import Header from '../components/Header'
 import Greeting from '../components/Greeting'
-import Logout from '../components/Logout';
+import Logout from '../components/UserStatus.jsx';
 import GameForm from '../components/GameForm.jsx';
 import ViewGame from '../components/ViewGame';
 
@@ -24,10 +24,7 @@ function Dashboard({ user }) {
 
     return (
         <div className='center-align'>
-            <Header />
-            <hr></hr>
-            <Logout />
-            <Greeting username={user?.email} />
+            <Header username={user?.email} />
             <hr></hr>
             <GameForm user={user} interfaceLoad={interfaceLoad} />
             <hr></hr>

@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { auth } from '../firebase.js'
 import LoginPage from './pages/LoginPage.jsx'
+import RegisterPage from './pages/RegisterPage.jsx'
 import Dashboard from './pages/Dashboard'
 import ProtectedRoute from './components/ProtectedRoute';
 
@@ -27,6 +28,7 @@ if (loading) return <p>Loading...</p>; //ProtectedRoute was doing checks before 
       <div className='container'>
         <Routes>
             <Route path="/login" element={<LoginPage user={user} />} />
+            <Route path="/register" element={<RegisterPage user={user} />} />
             <Route path="/" element={
               <ProtectedRoute user={user}>
                   <Dashboard user={user} />
