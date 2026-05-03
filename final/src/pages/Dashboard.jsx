@@ -4,7 +4,8 @@ import { getGames} from '../../firebase.js'
 import Header from '../components/Header'
 import Greeting from '../components/Greeting'
 import Logout from '../components/Logout';
-import GameForm from '../components/GameForm';
+import NewGame from '../components/NewGame';
+import ViewGame from '../components/ViewGame';
 
 function Dashboard({ user }) {
     const [games, setGames] = useState([]);
@@ -28,7 +29,9 @@ function Dashboard({ user }) {
             <Logout />
             <Greeting username={user?.email} />
             <hr></hr>
-            <GameForm user={user} games={games} interfaceLoad={interfaceLoad} />
+            <NewGame user={user} interfaceLoad={interfaceLoad} />
+            <hr></hr>
+            <ViewGame user={user} games={games} interfaceLoad={interfaceLoad} />
         </div>
     );
 }
