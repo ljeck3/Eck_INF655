@@ -1,7 +1,7 @@
-import { useState, useEffect} from "react";
-import { db, addGame, getGames, deleteGame, updateGame} from '../../firebase.js'
+import { useState } from "react";
+import { addGame, deleteGame, updateGame} from '../../firebase.js'
 
-function GameForm({ user }) {
+function GameForm({ user, games, interfaceLoad }) {
   const [newGame, setNewGame] = useState(""); // keeps track of new game name
   const [newPub, setNewPub] = useState(""); // keeps track of new game publisher
   const [newYear, setNewYear] = useState(""); // keeps track of new game year
@@ -9,14 +9,6 @@ function GameForm({ user }) {
   const [completeStatus, setCompleteStatus] = useState("");
 
   const [search, setSearch] = useState(""); // for search
-
-  const [games, setGames] = useState([]);
-
-  //load games
-  async function interfaceLoad() {
-    const data = await getGames(user.uid);
-    setGames(data);
-  }
 
   //delete games
   async function interfaceDelete(id) {
@@ -34,17 +26,7 @@ function GameForm({ user }) {
     const revisedDesc = window.prompt("Edit Game Description","");
     updateGame( id, { gameName: revisedGame, gamePublisher: revisedPub, gameYear: revisedYear, gameDescription: revisedDesc});
     interfaceLoad();
-    
   }
-
-  //Load games on load
-  useEffect(() => {
-  if (!user) return;
-    interfaceLoad();
-  }, [user]);
-
-  let searchWord = search.toLowerCase(); 
-  let filteredGames = games.filter(game => game.gameName.toLowerCase().includes(searchWord));
 
   async function handleSubmit() {
     const date = new Date();
@@ -55,6 +37,9 @@ function GameForm({ user }) {
       alert('You must add a name and description');
     }
   }
+
+  let searchWord = search.toLowerCase(); 
+  let filteredGames = games.filter(game => game.gameName.toLowerCase().includes(searchWord));
 
   function sortGames() {
       setGames(prev => [...prev].sort((a, b) => a.game.localeCompare(b.game)));
