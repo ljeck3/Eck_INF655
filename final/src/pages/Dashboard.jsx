@@ -4,7 +4,7 @@ import { getGames} from '../../firebase.js'
 import Header from '../components/Header'
 import Greeting from '../components/Greeting'
 import Logout from '../components/Logout';
-import NewGame from '../components/NewGame';
+import GameForm from '../components/GameForm.jsx';
 import ViewGame from '../components/ViewGame';
 
 function Dashboard({ user }) {
@@ -29,7 +29,7 @@ function Dashboard({ user }) {
             <Logout />
             <Greeting username={user?.email} />
             <hr></hr>
-            <NewGame user={user} interfaceLoad={interfaceLoad} />
+            <GameForm user={user} interfaceLoad={interfaceLoad} />
             <hr></hr>
             <ViewGame user={user} games={games} interfaceLoad={interfaceLoad} />
         </div>

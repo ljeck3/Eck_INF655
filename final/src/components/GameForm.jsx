@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { addGame } from '../../firebase.js'
 
-function NewGame({ user, interfaceLoad }) {
+function GameForm({ user, interfaceLoad }) {
   const [newGame, setNewGame] = useState(""); // keeps track of new game name
   const [newPub, setNewPub] = useState(""); // keeps track of new game publisher
   const [newYear, setNewYear] = useState(""); // keeps track of new game year
@@ -53,4 +53,4 @@ function NewGame({ user, interfaceLoad }) {
   )
 }
 
-export default NewGame; 
+export default GameForm; 
