@@ -14,7 +14,6 @@ import { useAuth } from '../context/AuthContext.jsx';
         e.preventDefault();
         try {
             await login(email, password);
-            alert("Login successful");
             navigate("/");
         } catch (error) {
             console.error("Login error:", error.message);

@@ -1,8 +1,10 @@
+import { useNavigate } from "react-router-dom";
 import { useState } from 'react';
 import { useAuth } from '../context/AuthContext.jsx';
 
   function Register() {
     const { register } = useAuth()
+    const navigate = useNavigate();
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -11,7 +13,8 @@ import { useAuth } from '../context/AuthContext.jsx';
         e.preventDefault();
         try {
             await register(email, password);
-            alert("User registered successfully");
+            alert("User registered successfully!");
+            navigate("/");
         } catch (error) {
             console.error("Registration error:", error.message);
         }
