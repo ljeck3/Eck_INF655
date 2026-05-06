@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { deleteGame, updateGame} from '../../firebase.js'
+import placeholder from '../assets/placeholder.png'
 
 function ViewGame({ games, interfaceLoad }) {
 
@@ -32,31 +33,31 @@ function ViewGame({ games, interfaceLoad }) {
   
   return (
     <div>
-      
       <h4>View Games</h4>
-
       <input
           placeholder="Search Games"
           value={search}
           onChange={e => setSearch(e.target.value)}
       />
-
-      <div>
-        {filteredGames.map((game, index) => 
+        {filteredGames.map((game, index) =>
+        <div className="cartridge"> 
           <ul key={index}>
             <li>{ game.gameName }</li>
             <li>{ game.gamePublisher }</li>
             <li>{ game.gameYear }</li>
             <li>{ game.gameDescription }</li>
+            <br></br>
+            <li>
+              <img src={placeholder} width="100px" alt="box-art"></img>
+            </li>
             <li>
               <br></br>
               <button onClick={() => interfaceUpdate(game.id)}>Edit</button>
               <button onClick={() => interfaceDelete(game.id)}>Delete</button>
             </li>
           </ul>
+        </div>
           )}
-      </div>
-
     </div>
   )
 }
