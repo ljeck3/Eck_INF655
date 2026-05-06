@@ -71,5 +71,5 @@ button:focus-visible {
   max-width: 225px;
   height: 300px;
   background-color: #242424;
-
+  margin: auto;
 }

@@ -32,7 +32,7 @@ function ViewGame({ games, interfaceLoad }) {
     }
   
   return (
-    <div>
+    <div className="">
       <h4>View Games</h4>
       <input
           placeholder="Search Games"
