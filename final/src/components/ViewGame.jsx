@@ -33,12 +33,15 @@ function ViewGame({ games, interfaceLoad }) {
   
   return (
     <div className="">
-      <h4>View Games</h4>
-      <input
-          placeholder="Search Games"
-          value={search}
-          onChange={e => setSearch(e.target.value)}
-      />
+      <div>
+        <h4>View Games</h4>
+        <input
+            placeholder="Search Games"
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+        />
+      </div>
+      <div className="container cartridge-grid">
         {filteredGames.map((game, index) =>
         <div className="cartridge"> 
           <ul key={index}>
@@ -51,13 +54,14 @@ function ViewGame({ games, interfaceLoad }) {
               <img src={placeholder} width="100px" alt="box-art"></img>
             </li>
             <li>
-              <br></br>
-              <button onClick={() => interfaceUpdate(game.id)}>Edit</button>
-              <button onClick={() => interfaceDelete(game.id)}>Delete</button>
+            <br></br>
+            <button onClick={() => interfaceUpdate(game.id)}>Edit</button>
+            <button onClick={() => interfaceDelete(game.id)}>Delete</button>
             </li>
           </ul>
         </div>
-          )}
+        )}
+      </div>
     </div>
   )
 }
