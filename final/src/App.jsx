@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { HashRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { auth } from '../firebase.js'
 import LoginPage from './pages/LoginPage.jsx'
@@ -25,7 +25,7 @@ useEffect(() => {
 if (loading) return <p>Loading...</p>; //ProtectedRoute was doing checks before Firebase could get user info. This makes it wait. 
 
   return (
-    <HashRouter>
+    <BrowserRouter>
       <div className='container'>
         <Routes>
             <Route path="/login" element={<LoginPage user={user} />} />
@@ -42,7 +42,7 @@ if (loading) return <p>Loading...</p>; //ProtectedRoute was doing checks before 
             } />
         </Routes>
       </div>
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 
