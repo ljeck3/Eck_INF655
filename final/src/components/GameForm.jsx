@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { addGame } from '../../firebase.js'
 
@@ -8,11 +9,15 @@ function GameForm({ user, interfaceLoad }) {
   const [newDesc, setNewDesc] = useState(""); // keeps track of new game description
   const [completeStatus, setCompleteStatus] = useState("");
 
+  const navigate = useNavigate();
+
   async function handleSubmit() {
     const date = new Date();
     if (newGame !== "") {
       await addGame({ gameName: newGame, gamePublisher: newPub, gameYear: newYear, gameDescription: newDesc }, user.uid, date.toDateString());
       interfaceLoad();//calls load again
+      navigate("/");
+
     } else {
       alert('You must add a name and description');
     }

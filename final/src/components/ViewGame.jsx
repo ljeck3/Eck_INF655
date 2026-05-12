@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { deleteGame, updateGame} from '../../firebase.js'
 import placeholder from '../assets/placeholder.png'
@@ -5,6 +6,8 @@ import placeholder from '../assets/placeholder.png'
 function ViewGame({ games, interfaceLoad }) {
 
   const [search, setSearch] = useState(""); // for search
+  
+  const navigate = useNavigate();
 
   //delete games
   async function interfaceDelete(id) {
@@ -35,6 +38,7 @@ function ViewGame({ games, interfaceLoad }) {
     <div className="">
       <div>
         <h4>View Games</h4>
+        <button onClick={() => navigate("/add")}>Add New Game</button>
         <input
             placeholder="Search Games"
             value={search}
@@ -51,7 +55,9 @@ function ViewGame({ games, interfaceLoad }) {
             <li>{ game.gameDescription }</li>
             <br></br>
             <li>
-              <img src={placeholder} width="100px" alt="box-art"></img>
+              <div>
+                <img src={placeholder} width="100px" alt="box-art"></img>
+              </div>
             </li>
             <li>
             <br></br>

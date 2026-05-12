@@ -7,7 +7,7 @@ import Logout from '../components/UserStatus.jsx';
 import GameForm from '../components/GameForm.jsx';
 import ViewGame from '../components/ViewGame';
 
-function Dashboard({ user }) {
+function AddGame({ user }) {
     const [games, setGames] = useState([]);
     
     //load games
@@ -26,9 +26,9 @@ function Dashboard({ user }) {
         <div className='center-align'>
             <Header username={user?.email} />
             <hr></hr>
-            <ViewGame user={user} games={games} interfaceLoad={interfaceLoad} />
+            <GameForm user={user} interfaceLoad={interfaceLoad} />
         </div>
     );
 }
 
-export default Dashboard;
+export default AddGame;

@@ -8,6 +8,7 @@ import Dashboard from './pages/Dashboard'
 import ProtectedRoute from './components/ProtectedRoute';
 
 import { onAuthStateChanged } from 'firebase/auth';
+import AddGame from './pages/AddGame.jsx';
 
 function App() {
 
@@ -32,6 +33,11 @@ if (loading) return <p>Loading...</p>; //ProtectedRoute was doing checks before 
             <Route path="/" element={
               <ProtectedRoute user={user}>
                   <Dashboard user={user} />
+              </ProtectedRoute>
+            } />
+            <Route path="/add" element={
+              <ProtectedRoute user={user}>
+                  <AddGame user={user} />
               </ProtectedRoute>
             } />
         </Routes>
