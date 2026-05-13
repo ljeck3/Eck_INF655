@@ -59,7 +59,7 @@ function ViewGame({ games, interfaceLoad }) {
             <br></br>
             <li>
               <div>
-                <img src={placeholder} width="100px" alt="box-art"></img>
+                <img src={ game.gameArt } width="100px" alt="box-art"></img>
               </div>
             </li>
             <li>{ game.gameCompletion }</li>

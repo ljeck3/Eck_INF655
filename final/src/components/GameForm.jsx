@@ -8,13 +8,14 @@ function GameForm({ user, interfaceLoad }) {
   const [newYear, setNewYear] = useState(""); // keeps track of new game year
   const [newDesc, setNewDesc] = useState(""); // keeps track of new game description
   const [completeStatus, setCompleteStatus] = useState("");
+  const [newArt, setNewArt] = useState(""); // keeps track of new game description
 
   const navigate = useNavigate();
 
   async function handleSubmit() {
     const date = new Date();
     if (newGame !== "") {
-      await addGame({ gameName: newGame, gamePublisher: newPub, gameYear: newYear, gameDescription: newDesc, gameCompletion: completeStatus }, user.uid, date.toDateString());
+      await addGame({ gameName: newGame, gamePublisher: newPub, gameYear: newYear, gameDescription: newDesc, gameCompletion: completeStatus, gameArt: newArt }, user.uid, date.toDateString());
       alert("Game added to library!")
       interfaceLoad();//calls load again
       navigate("/");
@@ -73,13 +74,13 @@ function GameForm({ user, interfaceLoad }) {
         </label>
       </p>
 
+      <input
+          placeholder="Paste link to box art image"
+          value={`${newArt}`}
+          onChange={e => setNewArt(e.target.value)}
+      />
 
-
-
-      <h5>Add box art </h5>
-      <input 
-        type="file">
-      </input><br></br><br></br>
+      <br></br><br></br>
       <button onClick={() => handleSubmit()}>
         Add Game
       </button>
