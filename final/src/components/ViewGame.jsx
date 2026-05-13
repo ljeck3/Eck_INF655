@@ -50,26 +50,33 @@ function ViewGame({ games, interfaceLoad }) {
       </div>
       <div className="container cartridge-grid">
         {filteredGames.map((game, index) =>
-        <div className="cartridge"> 
-          <ul key={index}>
+        <ul key={index}>
+          <div className="cartridge"> 
             <li>{ game.gameName }</li>
+            <hr></hr>
             <li>{ game.gamePublisher }</li>
+            <hr></hr>
             <li>{ game.gameYear }</li>
+            <hr></hr>
             <li>{ game.gameDescription }</li>
+            <hr></hr>
+            <li>{ game.gameCompletion }</li>
+            <hr></hr>
             <br></br>
             <li>
               <div>
-                <img src={ game.gameArt } width="100px" alt="box-art"></img>
+                <img src={ game.gameArt } width="120px" alt="box-art"></img>
               </div>
             </li>
-            <li>{ game.gameCompletion }</li>
+            </div>
             <li>
             <br></br>
-            <button onClick={() => interfaceUpdate(game.id)}>Edit</button>
-            <button onClick={() => interfaceDelete(game.id)}>Delete</button>
+              <button onClick={() => interfaceUpdate(game.id)}>Edit</button>
+              <button onClick={() => interfaceDelete(game.id)}>Delete</button>
             </li>
-          </ul>
-        </div>
+          
+        </ul>
+        
         )}
       </div>
     </div>
