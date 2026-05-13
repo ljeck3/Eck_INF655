@@ -62,6 +62,7 @@ function ViewGame({ games, interfaceLoad }) {
                 <img src={placeholder} width="100px" alt="box-art"></img>
               </div>
             </li>
+            <li>{ game.gameCompletion }</li>
             <li>
             <br></br>
             <button onClick={() => interfaceUpdate(game.id)}>Edit</button>

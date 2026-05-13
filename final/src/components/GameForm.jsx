@@ -14,7 +14,7 @@ function GameForm({ user, interfaceLoad }) {
   async function handleSubmit() {
     const date = new Date();
     if (newGame !== "") {
-      await addGame({ gameName: newGame, gamePublisher: newPub, gameYear: newYear, gameDescription: newDesc }, user.uid, date.toDateString());
+      await addGame({ gameName: newGame, gamePublisher: newPub, gameYear: newYear, gameDescription: newDesc, gameCompletion: completeStatus }, user.uid, date.toDateString());
       alert("Game added to library!")
       interfaceLoad();//calls load again
       navigate("/");
@@ -47,6 +47,35 @@ function GameForm({ user, interfaceLoad }) {
           value={newDesc}
           onChange={e => setNewDesc(e.target.value)}
       />
+
+      <p>
+        <label>
+          <input name="group1" type="radio" value="Beat the game" checked={completeStatus === "Beat the game"} onChange={e => setCompleteStatus(e.target.value)} />
+          <span>Beat the game</span>
+        </label>
+      </p>
+      <p>
+        <label>
+          <input name="group1" type="radio" value="Beat the game 100%" checked={completeStatus === "Beat the game 100%"} onChange={e => setCompleteStatus(e.target.value)} />
+          <span>Beat the game 100%</span>
+        </label>
+      </p>
+      <p>
+        <label>
+          <input name="group1" type="radio" value="Started" checked={completeStatus === "Started"} onChange={e => setCompleteStatus(e.target.value)} />
+          <span>Started</span>
+        </label>
+      </p>
+      <p>
+        <label>
+          <input name="group1" type="radio" value="Not started" checked={completeStatus === "Not started"} onChange={e => setCompleteStatus(e.target.value)} />
+          <span>Not started</span>
+        </label>
+      </p>
+
+
+
+
       <h5>Add box art </h5>
       <input 
         type="file">
