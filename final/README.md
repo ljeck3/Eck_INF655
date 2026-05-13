@@ -1,16 +1,46 @@
-# React + Vite
+# INF655 Final – Game Corner
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Description
+Game Corner is your personal dashboard for tracking your physical video game library! Add and visulize the games you own without having check that dusty shelf! Everything is tied to your own account.
 
-Currently, two official plugins are available:
+## Getting Started
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Viewing the Website
+Method 1: Visit online: https://inf655-final.vercel.app/ <br>
+Method 2: Run locally:
+```
+npm run dev
+```
 
-## React Compiler
+## Main Features
+* Register and login to an account.
+* Add, edit, and remove games from your library.
+* Mark games as complete.
+* Sort by game name or publisher.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Technologies Implemented
+* React
+* Google Firebase for data storage. 
+* Vercel for deployment.
 
-## Expanding the ESLint configuration
+## Challenges Faced
+* I struggled with passing data between components. I took extra time to follow how a prent component interacted with children components.
+* Styling is often a feature that gets pushed back due to time constraints. I often struggle with implementing my ambitious goals into the actual product.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## What I Learned
+This project got me comfortable and excited about creating more than a simple website. I built upon my skills with authentication, page routing, and dynamic page loading. I specifically learned more about splitting components into smaller parts and wiring them up together. A new thing I learned was deploying React projects using Vercel. I am excited to apply what I learned to future projects. 
+
+## Future Improvements
+* Better image system for game art.
+* More fun site design.
+* More comprehensive sorting and filtering. 
+
+## Authors
+
+Levi Eck
+
+## Acknowledgments
+
+Inspiration, code snippets, etc.
+* [Ramsey Muvva](https://github.com/ramseyFHSU)
+* [Materialize CSS](https://materializecss.com/)
