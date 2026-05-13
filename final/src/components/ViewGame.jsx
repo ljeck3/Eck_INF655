@@ -13,6 +13,7 @@ function ViewGame({ games, interfaceLoad }) {
   async function interfaceDelete(id) {
     if(confirm('Are you sure you want to delete?')) {
       deleteGame(id)
+      alert("Game deleted.")
       interfaceLoad();
     }
   }
@@ -44,6 +45,8 @@ function ViewGame({ games, interfaceLoad }) {
             value={search}
             onChange={e => setSearch(e.target.value)}
         />
+        {filteredGames.length === 0 && search && <p>No games found for "{search}".</p>}
+
       </div>
       <div className="container cartridge-grid">
         {filteredGames.map((game, index) =>

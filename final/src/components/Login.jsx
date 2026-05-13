@@ -17,6 +17,7 @@ import { useAuth } from '../context/AuthContext.jsx';
             navigate("/");
         } catch (error) {
             console.error("Login error:", error.message);
+            alert("Incorrect email or password.")
         }
         };
 
