@@ -9,14 +9,15 @@ Game Corner is your personal dashboard for tracking your physical video game lib
 Method 1: Visit online: https://inf655-final.vercel.app/ <br>
 Method 2: Run locally:
 ```
+cd final
+npm install
 npm run dev
 ```
 
 ## Main Features
 * Register and login to an account.
 * Add, edit, and remove games from your library.
-* Mark games as complete.
-* Sort by game name or publisher.
+* Mark game completion.
 
 ## Technologies Implemented
 * React
@@ -34,6 +35,7 @@ This project got me comfortable and excited about creating more than a simple we
 * Better image system for game art.
 * More fun site design.
 * More comprehensive sorting and filtering. 
+* Better update system.
 
 ## Authors
 
