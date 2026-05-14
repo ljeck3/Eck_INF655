@@ -24,7 +24,8 @@ function ViewGame({ games, interfaceLoad }) {
     const revisedPub = window.prompt("Edit Game Publisher","");
     const revisedYear = window.prompt("Edit Game Year","");
     const revisedDesc = window.prompt("Edit Game Description","");
-    updateGame( id, { gameName: revisedGame, gamePublisher: revisedPub, gameYear: revisedYear, gameDescription: revisedDesc});
+    const revisedLink = window.prompt("Edit Art Link","");
+    updateGame( id, { gameName: revisedGame, gamePublisher: revisedPub, gameYear: revisedYear, gameDescription: revisedDesc, gameArt: revisedLink});
     interfaceLoad();
   }
 
